@@ -337,7 +337,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-2xl font-lato text-blue-900">Transactional Sales</CardTitle>
                 <CardDescription className="text-blue-700 text-lg">
-                  Perfect for shorter sales cycles and product-focused selling
+                  Perfect for product-focused sales with shorter cycles
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
