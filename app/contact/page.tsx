@@ -65,10 +65,10 @@ export default function ContactPage() {
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10" />
+          <Link href="/" className="flex items-center space-x-3">
+            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10 transform scale-x-110" />
             <span className="text-xl font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
-          </div>
+          </Link>
           <Link href="/">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="h-4 w-4 mr-2" />

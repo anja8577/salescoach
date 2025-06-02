@@ -11,7 +11,7 @@ export async function submitContactForm(formData: FormData) {
     const message = formData.get("message") as string
 
     // Create transporter using environment variables
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number.parseInt(process.env.SMTP_PORT || "587"),
       secure: process.env.SMTP_PORT === "465", // true for 465, false for other ports

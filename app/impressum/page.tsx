@@ -8,10 +8,10 @@ export default function ImpressumPage() {
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10" />
-            <span className="text-xl font-bold text-gray-900">SalesCoach</span>
-          </div>
+          <Link href="/" className="flex items-center space-x-3">
+            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10 transform scale-x-110" />
+            <span className="text-xl font-bold text-gray-900 font-lato">SalesCoach</span>
+          </Link>
           <Link href="/">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -29,44 +29,37 @@ export default function ImpressumPage() {
 
           <div className="mb-6">
             <p className="mb-2">
-              <strong>SalesCoach GmbH</strong>
+              <strong>Anja El Kabbout</strong>
             </p>
-            <p>Musterstraße 123</p>
-            <p>12345 Musterstadt</p>
+            <p>Paul-Keller-Ring 5</p>
+            <p>96052 Bamberg</p>
             <p>Deutschland</p>
           </div>
 
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Kontakt</h3>
-            <p>Telefon: +49 (0) 123 456789</p>
-            <p>E-Mail: info@salescoach.com</p>
-          </div>
-
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Registereintrag</h3>
-            <p>Eintragung im Handelsregister</p>
-            <p>Registergericht: Amtsgericht Musterstadt</p>
-            <p>Registernummer: HRB 12345</p>
+            <p>Telefon: +49 175 344 5622</p>
+            <p>E-Mail: salescoach@akticon.net</p>
           </div>
 
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Umsatzsteuer-ID</h3>
             <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</p>
-            <p>DE123456789</p>
+            <p>DE325904692</p>
           </div>
 
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Geschäftsführung</h3>
-            <p>Max Mustermann</p>
+            <p>Anja El Kabbout</p>
           </div>
 
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
             </h3>
-            <p>Max Mustermann</p>
-            <p>Musterstraße 123</p>
-            <p>12345 Musterstadt</p>
+            <p>Anja El Kabbout</p>
+            <p>Paul-Keller-Ring 5</p>
+            <p>96052 Bamberg</p>
           </div>
 
           <div className="mb-6">

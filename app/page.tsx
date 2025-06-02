@@ -25,10 +25,10 @@ export default function HomePage() {
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10" />
+          <Link href="/" className="flex items-center space-x-3">
+            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10 transform scale-x-110" />
             <span className="text-xl font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
-          </div>
+          </Link>
         </div>
       </header>
 
@@ -337,7 +337,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-2xl font-lato text-blue-900">Transactional Sales</CardTitle>
                 <CardDescription className="text-blue-700 text-lg">
-                  Perfect for product-focused sales with shorter cycles
+                  Perfect for shorter sales cycles and product-focused selling
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -542,7 +542,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img src="/logo.png" alt="SalesCoach Logo" className="h-6 w-6" />
+                <img src="/logo.png" alt="SalesCoach Logo" className="h-6 w-6 transform scale-x-110" />
                 <span className="text-lg font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
               </div>
               <p className="text-gray-500">
@@ -559,12 +559,12 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link href="/privacy" className="hover:text-gray-900">
-                    Datenschutz
+                    Privacy Policy
                   </Link>
                 </li>
                 <li>
                   <Link href="/terms" className="hover:text-gray-900">
-                    AGB
+                    Terms & Conditions
                   </Link>
                 </li>
               </ul>
