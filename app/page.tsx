@@ -337,7 +337,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-2xl font-lato text-blue-900">Transactional Sales</CardTitle>
                 <CardDescription className="text-blue-700 text-lg">
-                  Perfect for shorter sales cycles and product-focused selling
+                  Perfect for product-focused sales with shorter cycles
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -434,7 +434,7 @@ export default function HomePage() {
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2 font-lato">Proven Results</h4>
                 <p className="text-gray-600 text-sm">
-                  Our sales models are best practices, derived from the success for thousands of sales teams
+                  Our sales models are best practices, derived from the successes of thousands of sales teams
                 </p>
               </div>
               <div className="text-center">
@@ -479,7 +479,7 @@ export default function HomePage() {
                 <div className="flex items-start space-x-4">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Reduce Turnover Costs</h3>
+                    <h3 className="font-semibold text-gray-900 font-lato">Reduce Turnover</h3>
                     <p className="text-gray-600">
                       Invest in your people and see dramatic improvements in retention rates.
                     </p>
@@ -511,7 +511,7 @@ export default function HomePage() {
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-purple-500 font-lato mb-2">50%</div>
-                  <p className="text-gray-600">faster ramp time with skills-based coaching programs</p>
+                  <p className="text-gray-600">faster ramp up time with skills-based coaching programs</p>
                   <p className="text-xs text-gray-400 mt-1">Source: Aberdeen Group Research</p>
                 </div>
               </div>
@@ -524,7 +524,7 @@ export default function HomePage() {
       <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 font-lato">Ready to Transform Your Sales Team?</h2>
-          <p className="text-xl mb-8 opacity-90">Try it out for free, no strings attached.</p>
+          <p className="text-xl mb-8 opacity-90">try it out for free, no strings attached</p>
           <div className="flex justify-center">
             <Link href="/install.txt" download>
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6">
@@ -546,7 +546,7 @@ export default function HomePage() {
                 <span className="text-lg font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
               </div>
               <p className="text-gray-500">
-                Empowering sales teams through standardized assessment and personalized coaching.
+                Empowering sales teams through standardized assessment and targeted coaching.
               </p>
             </div>
             <div>
