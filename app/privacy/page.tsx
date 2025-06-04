@@ -1,6 +1,4 @@
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 export default function PrivacyPolicyPage() {
   return (
@@ -10,13 +8,7 @@ export default function PrivacyPolicyPage() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
             <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10 transform scale-x-110" />
-            <span className="text-xl font-bold text-gray-900 font-lato">SalesCoach</span>
-          </Link>
-          <Link href="/">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
+            <span className="text-xl font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
           </Link>
         </div>
       </header>
