@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Send, MessageCircle, Lightbulb, CheckCircle, AlertCircle } from "lucide-react"
+import { Send, MessageCircle, Lightbulb, CheckCircle, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -68,12 +68,6 @@ export default function ContactPage() {
           <Link href="/" className="flex items-center space-x-3">
             <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10 transform scale-x-110" />
             <span className="text-xl font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
-          </Link>
-          <Link href="/">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
           </Link>
         </div>
       </header>
