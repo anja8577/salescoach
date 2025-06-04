@@ -3,7 +3,6 @@ import {
   TrendingUp,
   CheckCircle,
   Download,
-  Smartphone,
   Info,
   ClipboardList,
   Settings,
@@ -18,6 +17,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { AppIcon } from "@/components/app-icon"
 
 export default function HomePage() {
   return (
@@ -47,7 +47,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link href="/install.txt" download>
-              <Button size="lg" className="text-lg px-8 py-6">
+              <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700">
                 <Download className="mr-2 h-5 w-5" />
                 Install App Now
               </Button>
@@ -58,13 +58,13 @@ export default function HomePage() {
           <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-center space-x-4">
-                <Smartphone className="h-8 w-8 text-blue-600" />
+                <AppIcon className="h-10 w-10" />
                 <div className="text-left">
                   <h3 className="font-semibold text-gray-900 font-lato">Add to home screen</h3>
                   <p className="text-sm text-gray-600">Start for free</p>
                 </div>
                 <Link href="/install.txt" download>
-                  <Button className="ml-auto">Install</Button>
+                  <Button className="ml-auto bg-blue-600 hover:bg-blue-700">Install</Button>
                 </Link>
               </div>
             </CardContent>
@@ -221,7 +221,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <BarChart3 className="h-12 w-12 text-blue-500 mb-4" />
+                <BarChart3 className="h-12 w-12 text-blue-600 mb-4" />
                 <CardTitle className="font-lato">Align assessments</CardTitle>
                 <CardDescription>
                   Evaluate selling skills using the same criteria and clearly defined behavioral indicators across your
@@ -269,7 +269,7 @@ export default function HomePage() {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <Settings className="h-6 w-6 text-blue-500 mt-1 flex-shrink-0" />
+                  <Settings className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-gray-900 font-lato">Tailored Behavior Indicators</h3>
                     <p className="text-gray-600">
@@ -289,7 +289,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <Smartphone className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <AppIcon className="h-6 w-6 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-gray-900 font-lato">An App that is Truly Yours</h3>
                     <p className="text-gray-600">
@@ -525,7 +525,10 @@ export default function HomePage() {
           <p className="text-xl mb-8 opacity-90">Try it out for free, no strings attached.</p>
           <div className="flex justify-center">
             <Link href="/install.txt" download>
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6">
+              <Button
+                size="lg"
+                className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 border border-blue-600"
+              >
                 <Download className="mr-2 h-5 w-5" />
                 Install App Now
               </Button>
