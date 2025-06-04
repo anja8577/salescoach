@@ -137,7 +137,7 @@ export default function HomePage() {
                       coaching approaches.
                     </p>
                     <p className="text-xs text-green-600 font-medium">
-                      Source: CSO Insights Sales Performance Optimization Study (900+ organizations)
+                      Source: CSO Insights 2016 Sales Enablement Study (900+ organizations)
                     </p>
                   </div>
                 </div>
@@ -147,18 +147,16 @@ export default function HomePage() {
               <div className="flip-card h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-blue-50 rounded-lg cursor-pointer">
-                    <span className="text-gray-700 font-medium">Sales Cycle Reduction</span>
-                    <span className="text-3xl font-bold text-blue-500 font-lato">-25%</span>
+                    <span className="text-gray-700 font-medium">Deal Closure Improvement</span>
+                    <span className="text-3xl font-bold text-blue-500 font-lato">+20%</span>
                   </div>
                   <div className="flip-card-back p-4 bg-blue-100 rounded-lg">
-                    <h4 className="font-semibold text-blue-800 mb-2">Gartner Sales Research</h4>
+                    <h4 className="font-semibold text-blue-800 mb-2">Aberdeen Group 2019 Sales Research</h4>
                     <p className="text-sm text-blue-700 mb-2">
-                      Structured coaching focusing on specific selling skills reduced sales cycles by 25% through
-                      improved qualification and objection handling.
+                      Structured coaching focusing on specific selling skills improved deal closure rates by 20% through
+                      better qualification and objection handling techniques.
                     </p>
-                    <p className="text-xs text-blue-600 font-medium">
-                      Source: Gartner Research Analysis (10,000+ B2B sales interactions)
-                    </p>
+                    <p className="text-xs text-blue-600 font-medium">Source: Aberdeen Group 2019 Sales Research</p>
                   </div>
                 </div>
               </div>
@@ -167,17 +165,17 @@ export default function HomePage() {
               <div className="flip-card h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-purple-50 rounded-lg cursor-pointer">
-                    <span className="text-gray-700 font-medium">Rep Retention Increase</span>
-                    <span className="text-3xl font-bold text-purple-500 font-lato">+12%</span>
+                    <span className="text-gray-700 font-medium">Annual Revenue Growth</span>
+                    <span className="text-3xl font-bold text-purple-500 font-lato">+16.7%</span>
                   </div>
                   <div className="flip-card-back p-4 bg-purple-100 rounded-lg">
                     <h4 className="font-semibold text-purple-800 mb-2">Sales Management Association</h4>
                     <p className="text-sm text-purple-700 mb-2">
-                      Companies with formalized sales coaching programs experienced 12% higher retention rates compared
-                      to industry averages.
+                      Companies with optimal coaching programs experienced 16.7% greater annual revenue growth compared
+                      to organizations with informal coaching approaches.
                     </p>
                     <p className="text-xs text-purple-600 font-medium">
-                      Source: Sales Management Association Survey (200+ sales organizations)
+                      Source: Sales Management Association 2020 Coaching Impact Report
                     </p>
                   </div>
                 </div>
@@ -187,17 +185,17 @@ export default function HomePage() {
               <div className="flip-card h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-orange-50 rounded-lg cursor-pointer">
-                    <span className="text-gray-700 font-medium">Ramp Time Reduction</span>
-                    <span className="text-3xl font-bold text-orange-500 font-lato">-24%</span>
+                    <span className="text-gray-700 font-medium">New Hire Productivity</span>
+                    <span className="text-3xl font-bold text-orange-500 font-lato">+28%</span>
                   </div>
                   <div className="flip-card-back p-4 bg-orange-100 rounded-lg">
-                    <h4 className="font-semibold text-orange-800 mb-2">Forrester Research</h4>
+                    <h4 className="font-semibold text-orange-800 mb-2">Brandon Hall Group</h4>
                     <p className="text-sm text-orange-700 mb-2">
-                      Structured onboarding with skills assessment and targeted coaching reduced time-to-productivity
-                      for new hires by 24%.
+                      Structured onboarding with skills assessment and targeted coaching improved new hire productivity
+                      by 28% compared to traditional approaches.
                     </p>
                     <p className="text-xs text-orange-600 font-medium">
-                      Source: Forrester Research Multi-year Study (across industries)
+                      Source: Brandon Hall Group 2021 Onboarding Study
                     </p>
                   </div>
                 </div>
@@ -337,7 +335,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-2xl font-lato text-blue-900">Transactional Sales</CardTitle>
                 <CardDescription className="text-blue-700 text-lg">
-                  Perfect for product-focused sales with shorter cycles
+                  Perfect for shorter sales cycles and product-focused selling
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -434,7 +432,7 @@ export default function HomePage() {
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2 font-lato">Proven Results</h4>
                 <p className="text-gray-600 text-sm">
-                  Our sales models are best practices, derived from the successes of thousands of sales teams
+                  Our sales models are best practices, derived from the success for thousands of sales teams
                 </p>
               </div>
               <div className="text-center">
@@ -479,7 +477,7 @@ export default function HomePage() {
                 <div className="flex items-start space-x-4">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Reduce Turnover</h3>
+                    <h3 className="font-semibold text-gray-900 font-lato">Reduce Turnover Costs</h3>
                     <p className="text-gray-600">
                       Invest in your people and see dramatic improvements in retention rates.
                     </p>
@@ -500,19 +498,19 @@ export default function HomePage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center font-lato">Why It Matters</h3>
               <div className="space-y-6">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-500 font-lato mb-2">19%</div>
-                  <p className="text-gray-600">increase in sales performance with regular coaching</p>
-                  <p className="text-xs text-gray-400 mt-1">Source: Sales Management Association</p>
+                  <div className="text-4xl font-bold text-blue-500 font-lato mb-2">73%</div>
+                  <p className="text-gray-600">of sales managers spend less than 5% of their time coaching</p>
+                  <p className="text-xs text-gray-400 mt-1">Source: Sales Management Association 2020</p>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-green-500 font-lato mb-2">88%</div>
                   <p className="text-gray-600">of high-performing sales teams use structured coaching</p>
-                  <p className="text-xs text-gray-400 mt-1">Source: CSO Insights Sales Performance Study</p>
+                  <p className="text-xs text-gray-400 mt-1">Source: CSO Insights 2018 Sales Performance Study</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-purple-500 font-lato mb-2">50%</div>
-                  <p className="text-gray-600">faster ramp up time with skills-based coaching programs</p>
-                  <p className="text-xs text-gray-400 mt-1">Source: Aberdeen Group Research</p>
+                  <div className="text-4xl font-bold text-purple-500 font-lato mb-2">7x</div>
+                  <p className="text-gray-600">ROI on coaching investments in sales organizations</p>
+                  <p className="text-xs text-gray-400 mt-1">Source: ICF Global Coaching Study 2020</p>
                 </div>
               </div>
             </div>
@@ -524,7 +522,7 @@ export default function HomePage() {
       <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 font-lato">Ready to Transform Your Sales Team?</h2>
-          <p className="text-xl mb-8 opacity-90">try it out for free, no strings attached</p>
+          <p className="text-xl mb-8 opacity-90">Try it out for free, no strings attached.</p>
           <div className="flex justify-center">
             <Link href="/install.txt" download>
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6">
@@ -546,7 +544,7 @@ export default function HomePage() {
                 <span className="text-lg font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
               </div>
               <p className="text-gray-500">
-                Empowering sales teams through standardized assessment and targeted coaching.
+                Empowering sales teams through standardized assessment and personalized coaching.
               </p>
             </div>
             <div>
