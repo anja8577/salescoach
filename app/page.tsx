@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import {
   BarChart3,
   TrendingUp,
@@ -24,6 +25,20 @@ import { AppIcon } from "@/components/app-icon"
 export default function HomePage() {
   const handleInstallClick = () => {
     window.dispatchEvent(new CustomEvent("pwa-install-prompt"))
+  }
+
+  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
+
+  const handleCardFlip = (cardIndex: number) => {
+    setFlippedCards((prev) => {
+      const newSet = new Set(prev)
+      if (newSet.has(cardIndex)) {
+        newSet.delete(cardIndex)
+      } else {
+        newSet.add(cardIndex)
+      }
+      return newSet
+    })
   }
 
   return (
@@ -55,6 +70,11 @@ export default function HomePage() {
             <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" onClick={handleInstallClick}>
               <Download className="mr-2 h-5 w-5" />
               Install App Now
+            </Button>
+            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" asChild>
+              <a href="http://akticonsalescoach.replit.app/" target="_blank" rel="noopener noreferrer">
+                Try the Web App
+              </a>
             </Button>
           </div>
 
@@ -128,13 +148,19 @@ export default function HomePage() {
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {/* Win Rate Improvement Card */}
-              <div className="flip-card h-52 md:h-44">
+              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(0) ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
-                  <div className="flip-card-front flex justify-between items-center p-4 bg-green-50 rounded-lg cursor-pointer">
+                  <div
+                    className="flip-card-front flex justify-between items-center p-4 bg-green-50 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(0)}
+                  >
                     <span className="text-gray-700 font-medium">Win Rate Improvement</span>
                     <span className="text-3xl font-bold text-green-500 font-lato">+27%</span>
                   </div>
-                  <div className="flip-card-back p-3 md:p-4 bg-green-100 rounded-lg">
+                  <div
+                    className="flip-card-back p-3 md:p-4 bg-green-100 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(0)}
+                  >
                     <h4 className="font-semibold text-green-800 mb-2 text-sm md:text-base">CSO Insights Research</h4>
                     <p className="text-xs md:text-sm text-green-700 mb-2 leading-relaxed">
                       Organizations with dynamic coaching programs saw 27.9% improvement in win rates vs. informal
@@ -148,13 +174,19 @@ export default function HomePage() {
               </div>
 
               {/* Sales Cycle Reduction Card */}
-              <div className="flip-card h-52 md:h-44">
+              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(1) ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
-                  <div className="flip-card-front flex justify-between items-center p-4 bg-blue-50 rounded-lg cursor-pointer">
+                  <div
+                    className="flip-card-front flex justify-between items-center p-4 bg-blue-50 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(1)}
+                  >
                     <span className="text-gray-700 font-medium">Deal Closure Improvement</span>
                     <span className="text-3xl font-bold text-blue-500 font-lato">+20%</span>
                   </div>
-                  <div className="flip-card-back p-3 md:p-4 bg-blue-100 rounded-lg">
+                  <div
+                    className="flip-card-back p-3 md:p-4 bg-blue-100 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(1)}
+                  >
                     <h4 className="font-semibold text-blue-800 mb-2 text-sm md:text-base">
                       Aberdeen Group 2019 Sales Research
                     </h4>
@@ -168,35 +200,45 @@ export default function HomePage() {
               </div>
 
               {/* Rep Retention Increase Card */}
-              <div className="flip-card h-52 md:h-44">
+              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(2) ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
-                  <div className="flip-card-front flex justify-between items-center p-4 bg-purple-50 rounded-lg cursor-pointer">
+                  <div
+                    className="flip-card-front flex justify-between items-center p-4 bg-purple-50 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(2)}
+                  >
                     <span className="text-gray-700 font-medium">Annual Revenue Growth</span>
                     <span className="text-3xl font-bold text-purple-500 font-lato">+16.7%</span>
                   </div>
-                  <div className="flip-card-back p-3 md:p-4 bg-purple-100 rounded-lg">
-                    <h4 className="font-semibold text-purple-800 mb-2 text-sm md:text-base">
+                  <div
+                    className="flip-card-back p-3 md:p-4 bg-purple-100 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(2)}
+                  >
+                    <h4 className="font-semibold text-purple-800 mb-1 text-xs md:text-sm">
                       Sales Management Association
                     </h4>
-                    <p className="text-xs md:text-sm text-purple-700 mb-2 leading-relaxed">
-                      Companies with optimal coaching programs experienced 16.7% greater annual revenue growth compared
-                      to organizations with informal coaching approaches.
+                    <p className="text-xs text-purple-700 mb-1 leading-tight">
+                      Companies with optimal coaching programs experienced 16.7% greater annual revenue growth vs.
+                      informal coaching.
                     </p>
-                    <p className="text-xs text-purple-600 font-medium">
-                      Source: Sales Management Association 2020 Coaching Impact Report
-                    </p>
+                    <p className="text-xs text-purple-600 font-medium">Source: Sales Management Association 2020</p>
                   </div>
                 </div>
               </div>
 
               {/* Ramp Time Reduction Card */}
-              <div className="flip-card h-52 md:h-44">
+              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(3) ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
-                  <div className="flip-card-front flex justify-between items-center p-4 bg-orange-50 rounded-lg cursor-pointer">
+                  <div
+                    className="flip-card-front flex justify-between items-center p-4 bg-orange-50 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(3)}
+                  >
                     <span className="text-gray-700 font-medium">New Hire Productivity</span>
                     <span className="text-3xl font-bold text-orange-500 font-lato">+28%</span>
                   </div>
-                  <div className="flip-card-back p-3 md:p-4 bg-orange-100 rounded-lg">
+                  <div
+                    className="flip-card-back p-3 md:p-4 bg-orange-100 rounded-lg cursor-pointer"
+                    onClick={() => handleCardFlip(3)}
+                  >
                     <h4 className="font-semibold text-orange-800 mb-2 text-sm md:text-base">Brandon Hall Group</h4>
                     <p className="text-xs md:text-sm text-orange-700 mb-2 leading-relaxed">
                       Structured onboarding with skills assessment and targeted coaching improved new hire productivity
