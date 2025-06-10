@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Download, X } from 'lucide-react'
+import { Download, X } from "lucide-react"
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
@@ -30,8 +30,8 @@ export function PWAInstall() {
       setShowInstallBanner(false)
       setDeferredPrompt(null)
     }
-    
-    // NEW: Handle custom event from install buttons
+
+    // Handle custom event from install buttons
     const handleInstallPrompt = () => {
       if (deferredPrompt) {
         handleInstallClick()
@@ -83,7 +83,7 @@ export function PWAInstall() {
             <p className="text-sm text-gray-600 mb-3">Add to your home screen for quick access and offline use.</p>
             <div className="flex gap-2">
               <Button onClick={handleInstallClick} size="sm" className="flex-1 bg-blue-600 hover:bg-blue-700">
-                <Download className="mr-2 h-4 w-4" />
+                <Download className="w-4 h-4 mr-2" />
                 Install
               </Button>
               <Button onClick={handleDismiss} variant="outline" size="sm">

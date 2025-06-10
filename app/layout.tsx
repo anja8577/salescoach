@@ -1,8 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Lato } from 'next/font/google'
+import { Inter, Lato } from "next/font/google"
 import "./globals.css"
-import { PWAInstall } from "@/components/pwa-install"  // ADD THIS LINE
+import { PWAInstall } from "@/components/pwa-install"
 
 const inter = Inter({ subsets: ["latin"] })
 const lato = Lato({
@@ -80,10 +80,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="SalesCoach" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#2563eb" />
+        <meta name="msapplication-TileColor" content="#11339b" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
-      <body className={`${inter.className} ${lato.variable}`}>{children}
+      <body className={`${inter.className} ${lato.variable}`}>
+        {children}
         <PWAInstall />
       </body>
     </html>

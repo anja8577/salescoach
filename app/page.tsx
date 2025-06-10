@@ -1,3 +1,5 @@
+"use client"
+
 import {
   BarChart3,
   TrendingUp,
@@ -20,6 +22,10 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { AppIcon } from "@/components/app-icon"
 
 export default function HomePage() {
+  const handleInstallClick = () => {
+    window.dispatchEvent(new CustomEvent("pwa-install-prompt"))
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       {/* Header */}
@@ -46,15 +52,10 @@ export default function HomePage() {
             and drive measurable business results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
-              onClick={() => window.dispatchEvent(new CustomEvent('pwa-install-prompt'))}
-            >
+            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" onClick={handleInstallClick}>
               <Download className="mr-2 h-5 w-5" />
               Install App Now
-            </Button>  
-            </Link>
+            </Button>
           </div>
 
           {/* PWA Installation Banner */}
@@ -66,13 +67,8 @@ export default function HomePage() {
                   <h3 className="font-semibold text-gray-900 font-lato">Add to home screen</h3>
                   <p className="text-sm text-gray-600">Start for free</p>
                 </div>
-                <Button 
-                  size="lg" 
-                  className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
-                  onClick={() => window.dispatchEvent(new CustomEvent('pwa-install-prompt'))}
-                >
-                  <Download className="mr-2 h-5 w-5" />
-                  Install App Now
+                <Button className="ml-auto bg-blue-600 hover:bg-blue-700" onClick={handleInstallClick}>
+                  Install
                 </Button>
               </div>
             </CardContent>
@@ -532,10 +528,10 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6 font-lato">Ready to Transform Your Sales Team?</h2>
           <p className="text-xl mb-8 opacity-90">Try it out for free, no strings attached.</p>
           <div className="flex justify-center">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
-              onClick={() => window.dispatchEvent(new CustomEvent('pwa-install-prompt'))}
+            <Button
+              size="lg"
+              className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 border border-blue-600"
+              onClick={handleInstallClick}
             >
               <Download className="mr-2 h-5 w-5" />
               Install App Now
