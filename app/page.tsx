@@ -128,15 +128,15 @@ export default function HomePage() {
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {/* Win Rate Improvement Card */}
-              <div className="flip-card h-44">
+              <div className="flip-card h-52 md:h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-green-50 rounded-lg cursor-pointer">
                     <span className="text-gray-700 font-medium">Win Rate Improvement</span>
                     <span className="text-3xl font-bold text-green-500 font-lato">+27%</span>
                   </div>
-                  <div className="flip-card-back p-4 bg-green-100 rounded-lg">
-                    <h4 className="font-semibold text-green-800 mb-2">CSO Insights Research</h4>
-                    <p className="text-sm text-green-700 mb-2">
+                  <div className="flip-card-back p-3 md:p-4 bg-green-100 rounded-lg">
+                    <h4 className="font-semibold text-green-800 mb-2 text-sm md:text-base">CSO Insights Research</h4>
+                    <p className="text-xs md:text-sm text-green-700 mb-2 leading-relaxed">
                       Organizations with dynamic coaching programs saw 27.9% improvement in win rates vs. informal
                       coaching approaches.
                     </p>
@@ -148,15 +148,17 @@ export default function HomePage() {
               </div>
 
               {/* Sales Cycle Reduction Card */}
-              <div className="flip-card h-44">
+              <div className="flip-card h-52 md:h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-blue-50 rounded-lg cursor-pointer">
                     <span className="text-gray-700 font-medium">Deal Closure Improvement</span>
                     <span className="text-3xl font-bold text-blue-500 font-lato">+20%</span>
                   </div>
-                  <div className="flip-card-back p-4 bg-blue-100 rounded-lg">
-                    <h4 className="font-semibold text-blue-800 mb-2">Aberdeen Group 2019 Sales Research</h4>
-                    <p className="text-sm text-blue-700 mb-2">
+                  <div className="flip-card-back p-3 md:p-4 bg-blue-100 rounded-lg">
+                    <h4 className="font-semibold text-blue-800 mb-2 text-sm md:text-base">
+                      Aberdeen Group 2019 Sales Research
+                    </h4>
+                    <p className="text-xs md:text-sm text-blue-700 mb-2 leading-relaxed">
                       Structured coaching focusing on specific selling skills improved deal closure rates by 20% through
                       better qualification and objection handling techniques.
                     </p>
@@ -166,15 +168,17 @@ export default function HomePage() {
               </div>
 
               {/* Rep Retention Increase Card */}
-              <div className="flip-card h-44">
+              <div className="flip-card h-52 md:h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-purple-50 rounded-lg cursor-pointer">
                     <span className="text-gray-700 font-medium">Annual Revenue Growth</span>
                     <span className="text-3xl font-bold text-purple-500 font-lato">+16.7%</span>
                   </div>
-                  <div className="flip-card-back p-4 bg-purple-100 rounded-lg">
-                    <h4 className="font-semibold text-purple-800 mb-2">Sales Management Association</h4>
-                    <p className="text-sm text-purple-700 mb-2">
+                  <div className="flip-card-back p-3 md:p-4 bg-purple-100 rounded-lg">
+                    <h4 className="font-semibold text-purple-800 mb-2 text-sm md:text-base">
+                      Sales Management Association
+                    </h4>
+                    <p className="text-xs md:text-sm text-purple-700 mb-2 leading-relaxed">
                       Companies with optimal coaching programs experienced 16.7% greater annual revenue growth compared
                       to organizations with informal coaching approaches.
                     </p>
@@ -186,15 +190,15 @@ export default function HomePage() {
               </div>
 
               {/* Ramp Time Reduction Card */}
-              <div className="flip-card h-44">
+              <div className="flip-card h-52 md:h-44">
                 <div className="flip-card-inner">
                   <div className="flip-card-front flex justify-between items-center p-4 bg-orange-50 rounded-lg cursor-pointer">
                     <span className="text-gray-700 font-medium">New Hire Productivity</span>
                     <span className="text-3xl font-bold text-orange-500 font-lato">+28%</span>
                   </div>
-                  <div className="flip-card-back p-4 bg-orange-100 rounded-lg">
-                    <h4 className="font-semibold text-orange-800 mb-2">Brandon Hall Group</h4>
-                    <p className="text-sm text-orange-700 mb-2">
+                  <div className="flip-card-back p-3 md:p-4 bg-orange-100 rounded-lg">
+                    <h4 className="font-semibold text-orange-800 mb-2 text-sm md:text-base">Brandon Hall Group</h4>
+                    <p className="text-xs md:text-sm text-orange-700 mb-2 leading-relaxed">
                       Structured onboarding with skills assessment and targeted coaching improved new hire productivity
                       by 28% compared to traditional approaches.
                     </p>
@@ -224,8 +228,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <BarChart3 className="h-12 w-12 text-blue-600 mb-4" />
+              <CardHeader className="text-center md:text-left">
+                <div className="flex justify-center md:justify-start">
+                  <BarChart3 className="h-12 w-12 text-blue-600 mb-4" />
+                </div>
                 <CardTitle className="font-lato">Align assessments</CardTitle>
                 <CardDescription>
                   Evaluate selling skills using the same criteria and clearly defined behavioral indicators across your
@@ -235,16 +241,20 @@ export default function HomePage() {
             </Card>
 
             <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <ClipboardList className="h-12 w-12 text-yellow-500 mb-4" />
+              <CardHeader className="text-center md:text-left">
+                <div className="flex justify-center md:justify-start">
+                  <ClipboardList className="h-12 w-12 text-yellow-500 mb-4" />
+                </div>
                 <CardTitle className="font-lato">Coach with focus</CardTitle>
                 <CardDescription>Coach specific skills based on assessment results.</CardDescription>
               </CardHeader>
             </Card>
 
             <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <TrendingUp className="h-12 w-12 text-red-500 mb-4" />
+              <CardHeader className="text-center md:text-left">
+                <div className="flex justify-center md:justify-start">
+                  <TrendingUp className="h-12 w-12 text-red-500 mb-4" />
+                </div>
                 <CardTitle className="font-lato">Track development</CardTitle>
                 <CardDescription>
                   Monitor skill development over time to ensure what you do is having an impact.
