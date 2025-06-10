@@ -20,26 +20,50 @@ export function PWAInstall() {
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
+      console.log("beforeinstallprompt event fired")
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
       setShowInstallBanner(true)
     }
 
     const handleAppInstalled = () => {
+      console.log("PWA was installed")
       setIsInstalled(true)
       setShowInstallBanner(false)
       setDeferredPrompt(null)
     }
 
     // Handle custom event from install buttons
-    const handleInstallPrompt = () => {
+    const handleInstallPrompt = async () => {
+      console.log("Custom install prompt triggered")
       if (deferredPrompt) {
-        handleInstallClick()
+        try {
+          deferredPrompt.prompt()
+          const { outcome } = await deferredPrompt.userChoice
+          console.log(`User response to the install prompt: ${outcome}`)
+          if (outcome === "accepted") {
+            setDeferredPrompt(null)
+            setShowInstallBanner(false)
+          }
+        } catch (error) {
+          console.error("Error showing install prompt:", error)
+        }
+      } else {
+        console.log("No deferred prompt available")
+        // Fallback: show instructions for manual installation
+        alert(
+          "To install this app:\n\n• On Chrome: Click the menu (⋮) → 'Install SalesCoach'\n• On Safari: Click Share → 'Add to Home Screen'\n• On Edge: Click the menu (⋯) → 'Apps' → 'Install this site as an app'",
+        )
       }
     }
 
     // Check if app is already installed
     if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+      setIsInstalled(true)
+    }
+
+    // Check if running as PWA
+    if (window.navigator && "standalone" in window.navigator && (window.navigator as any).standalone) {
       setIsInstalled(true)
     }
 
@@ -55,14 +79,26 @@ export function PWAInstall() {
   }, [deferredPrompt])
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return
+    if (!deferredPrompt) {
+      console.log("No deferred prompt available in banner")
+      // Fallback: show instructions for manual installation
+      alert(
+        "To install this app:\n\n• On Chrome: Click the menu (⋮) → 'Install SalesCoach'\n• On Safari: Click Share → 'Add to Home Screen'\n• On Edge: Click the menu (⋯) → 'Apps' → 'Install this site as an app'",
+      )
+      return
+    }
 
-    deferredPrompt.prompt()
-    const { outcome } = await deferredPrompt.userChoice
+    try {
+      deferredPrompt.prompt()
+      const { outcome } = await deferredPrompt.userChoice
+      console.log(`User response to the install prompt: ${outcome}`)
 
-    if (outcome === "accepted") {
-      setDeferredPrompt(null)
-      setShowInstallBanner(false)
+      if (outcome === "accepted") {
+        setDeferredPrompt(null)
+        setShowInstallBanner(false)
+      }
+    } catch (error) {
+      console.error("Error showing install prompt:", error)
     }
   }
 

@@ -4,7 +4,7 @@ interface AppIconProps {
 
 export function AppIcon({ className = "h-8 w-8" }: AppIconProps) {
   return (
-    <div className={`${className} bg-white border-2 border-blue-600 rounded-lg flex items-center justify-center p-1`}>
+    <div className={`${className} bg-white rounded-xl shadow-lg flex items-center justify-center p-2`}>
       <img src="/logo.png" alt="SalesCoach" className="w-full h-full object-contain" />
     </div>
   )

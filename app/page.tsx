@@ -14,6 +14,7 @@ import {
   Users,
   Zap,
   Heart,
+  ExternalLink,
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -23,8 +24,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { AppIcon } from "@/components/app-icon"
 
 export default function HomePage() {
-  const handleInstallClick = () => {
-    window.dispatchEvent(new CustomEvent("pwa-install-prompt"))
+  const handleAppLaunch = () => {
+    window.open("http://akticonsalescoach.replit.app/", "_blank", "noopener,noreferrer")
   }
 
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
@@ -67,28 +68,27 @@ export default function HomePage() {
             and drive measurable business results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" onClick={handleInstallClick}>
-              <Download className="mr-2 h-5 w-5" />
-              Install App Now
+            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" onClick={handleAppLaunch}>
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Launch SalesCoach App
             </Button>
-            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" asChild>
-              <a href="http://akticonsalescoach.replit.app/" target="_blank" rel="noopener noreferrer">
-                Try the Web App
-              </a>
+            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" onClick={handleAppLaunch}>
+              <Download className="mr-2 h-5 w-5" />
+              Try the Web App
             </Button>
           </div>
 
-          {/* PWA Installation Banner */}
+          {/* App Launch Banner */}
           <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-center space-x-4">
-                <AppIcon className="h-10 w-10" />
+                <AppIcon className="h-12 w-12" />
                 <div className="text-left">
-                  <h3 className="font-semibold text-gray-900 font-lato">Add to home screen</h3>
-                  <p className="text-sm text-gray-600">Start for free</p>
+                  <h3 className="font-semibold text-gray-900 font-lato">Launch SalesCoach</h3>
+                  <p className="text-sm text-gray-600">Start for free - no installation required</p>
                 </div>
-                <Button className="ml-auto bg-blue-600 hover:bg-blue-700" onClick={handleInstallClick}>
-                  Install
+                <Button className="ml-auto bg-blue-600 hover:bg-blue-700" onClick={handleAppLaunch}>
+                  Launch App
                 </Button>
               </div>
             </CardContent>
@@ -583,10 +583,10 @@ export default function HomePage() {
             <Button
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 border border-blue-600"
-              onClick={handleInstallClick}
+              onClick={handleAppLaunch}
             >
-              <Download className="mr-2 h-5 w-5" />
-              Install App Now
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Launch SalesCoach App
             </Button>
           </div>
         </div>
