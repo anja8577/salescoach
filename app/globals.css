@@ -58,14 +58,6 @@
   }
 }
 
-/* PWA specific styles */
-@media (display-mode: standalone) {
-  body {
-    user-select: none;
-    -webkit-user-select: none;
-  }
-}
-
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
