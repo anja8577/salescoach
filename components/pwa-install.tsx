@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Download, X } from "lucide-react"
+import { Download, X } from 'lucide-react'
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
@@ -30,6 +30,13 @@ export function PWAInstall() {
       setShowInstallBanner(false)
       setDeferredPrompt(null)
     }
+    
+    // NEW: Handle custom event from install buttons
+    const handleInstallPrompt = () => {
+      if (deferredPrompt) {
+        handleInstallClick()
+      }
+    }
 
     // Check if app is already installed
     if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
@@ -38,12 +45,14 @@ export function PWAInstall() {
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
     window.addEventListener("appinstalled", handleAppInstalled)
+    window.addEventListener("pwa-install-prompt", handleInstallPrompt)
 
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
       window.removeEventListener("appinstalled", handleAppInstalled)
+      window.removeEventListener("pwa-install-prompt", handleInstallPrompt)
     }
-  }, [])
+  }, [deferredPrompt])
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) return
@@ -73,8 +82,8 @@ export function PWAInstall() {
             <h3 className="font-semibold text-gray-900 mb-1">Install SalesCoach</h3>
             <p className="text-sm text-gray-600 mb-3">Add to your home screen for quick access and offline use.</p>
             <div className="flex gap-2">
-              <Button onClick={handleInstallClick} size="sm" className="flex-1">
-                <Download className="w-4 h-4 mr-2" />
+              <Button onClick={handleInstallClick} size="sm" className="flex-1 bg-blue-600 hover:bg-blue-700">
+                <Download className="mr-2 h-4 w-4" />
                 Install
               </Button>
               <Button onClick={handleDismiss} variant="outline" size="sm">
