@@ -46,11 +46,14 @@ export default function HomePage() {
             and drive measurable business results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="/install.txt" download>
-              <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700">
-                <Download className="mr-2 h-5 w-5" />
-                Install App Now
-              </Button>
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
+              onClick={() => window.dispatchEvent(new CustomEvent('pwa-install-prompt'))}
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Install App Now
+            </Button>  
             </Link>
           </div>
 
@@ -63,9 +66,14 @@ export default function HomePage() {
                   <h3 className="font-semibold text-gray-900 font-lato">Add to home screen</h3>
                   <p className="text-sm text-gray-600">Start for free</p>
                 </div>
-                <Link href="/install.txt" download>
-                  <Button className="ml-auto bg-blue-600 hover:bg-blue-700">Install</Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
+                  onClick={() => window.dispatchEvent(new CustomEvent('pwa-install-prompt'))}
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Install App Now
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -524,15 +532,14 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6 font-lato">Ready to Transform Your Sales Team?</h2>
           <p className="text-xl mb-8 opacity-90">Try it out for free, no strings attached.</p>
           <div className="flex justify-center">
-            <Link href="/install.txt" download>
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 border border-blue-600"
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Install App Now
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
+              onClick={() => window.dispatchEvent(new CustomEvent('pwa-install-prompt'))}
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Install App Now
+            </Button>
           </div>
         </div>
       </section>
