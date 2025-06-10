@@ -1,7 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Lato } from "next/font/google"
+import { Inter, Lato } from 'next/font/google'
 import "./globals.css"
+import { PWAInstall } from "@/components/pwa-install"  // ADD THIS LINE
 
 const inter = Inter({ subsets: ["latin"] })
 const lato = Lato({
@@ -82,7 +83,9 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#2563eb" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
-      <body className={`${inter.className} ${lato.variable}`}>{children}</body>
+      <body className={`${inter.className} ${lato.variable}`}>{children}
+        <PWAInstall />
+      </body>
     </html>
   )
 }
