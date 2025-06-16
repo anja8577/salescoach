@@ -1,553 +1,422 @@
 "use client"
 
-import { useState } from "react"
-import {
-  BarChart3,
-  TrendingUp,
-  CheckCircle,
-  Info,
-  ClipboardList,
-  Settings,
-  Sliders,
-  Target,
-  Users,
-  Zap,
-  Heart,
-} from "lucide-react"
+import { useState, useEffect } from "react"
+import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { AppIcon } from "@/components/app-icon"
+import TestimonialCarousel from "../components/TestimonialCarousel"
 
 export default function HomePage() {
-  const handleAppLaunch = () => {
-    window.open("http://akticonsalescoach.replit.app/", "_blank", "noopener,noreferrer")
-  }
+  const [scrollY, setScrollY] = useState(0)
+  const [activeItem, setActiveItem] = useState<number | null>(null)
 
-  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
-
-  const handleCardFlip = (cardIndex: number) => {
-    setFlippedCards((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(cardIndex)) {
-        newSet.delete(cardIndex)
-      } else {
-        newSet.add(cardIndex)
-      }
-      return newSet
-    })
-  }
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3">
-            <img src="/logo.png" alt="SalesCoach Logo" className="h-10 w-10 transform scale-x-110" />
-            <span className="text-xl font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrollY > 50 ? "bg-white shadow-md py-3" : "bg-white/80 backdrop-blur-sm py-5"
+        }`}
+      >
+        <div className="container mx-auto px-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/AKTICON-logo-horizontal.png"
+              alt="AKTICON"
+              width={180}
+              height={50}
+              className="h-10 w-auto"
+            />
+          </Link>
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link href="#about" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+              About
+            </Link>
+            <Link href="#services" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+              Services
+            </Link>
+            <Link href="#process" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+              Process
+            </Link>
+            <a
+              href="https://salescoach.akticon.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+            >
+              SalesCoach
+            </a>
+            <Link href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+              Contact
+            </Link>
+          </nav>
+          <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+            Get in Touch
           </Link>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center max-w-4xl">
-          <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-100">
-            Transform Your Sales Team Performance
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 font-lato">
-            Assess. Coach. <span className="text-blue-600">Excel.</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            Empower sales managers with standardized assessments to evaluate selling skills, provide targeted coaching,
-            and drive measurable business results.
-          </p>
-          <div className="flex flex-col items-center justify-center mb-12">
-            <Button size="lg" className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700" onClick={handleAppLaunch}>
-              <div className="mr-2">
-                <AppIcon className="h-5 w-5" />
-              </div>
-              Launch SalesCoach App
-            </Button>
-            <p className="text-gray-600 mt-4">Start for free. No installation required. No strings attached.</p>
-          </div>
+      <section className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-red-600/10"></div>
         </div>
-      </section>
 
-      {/* Problem Statement */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 font-lato">The Challenge Every Sales Manager Faces</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <Card className="border-red-200 bg-red-50">
-              <CardContent className="p-6 text-center">
-                <div className="text-red-500 text-4xl font-bold mb-2 font-lato">43%</div>
-                <p className="text-gray-700">of sales reps miss their quota</p>
-              </CardContent>
-            </Card>
-            <Card className="border-orange-200 bg-orange-50">
-              <CardContent className="p-6 text-center">
-                <div className="text-orange-500 text-4xl font-bold mb-2 font-lato">EUR 250k</div>
-                <p className="text-gray-700">average cost of sales rep turnover</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Coaching Impact Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-lato">
-              The Power of Structured Sales Coaching
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Research shows that organizations with formal coaching programs significantly outperform those without.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-2xl shadow-xl max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center font-lato">
-              Research-Backed Impact
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 ml-2">
-                      <Info className="h-4 w-4" />
-                      <span className="sr-only">Info</span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="max-w-xs">Click on any metric to see detailed research information</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Win Rate Improvement Card */}
-              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(0) ? "flipped" : ""}`}>
-                <div className="flip-card-inner">
-                  <div
-                    className="flip-card-front flex justify-between items-center p-4 bg-green-50 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(0)}
-                  >
-                    <span className="text-gray-700 font-medium">Win Rate Improvement</span>
-                    <span className="text-3xl font-bold text-green-500 font-lato">+27%</span>
-                  </div>
-                  <div
-                    className="flip-card-back p-3 md:p-4 bg-green-100 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(0)}
-                  >
-                    <h4 className="font-semibold text-green-800 mb-2 text-sm md:text-base">CSO Insights Research</h4>
-                    <p className="text-xs md:text-sm text-green-700 mb-2 leading-relaxed">
-                      Organizations with dynamic coaching programs saw 27.9% improvement in win rates vs. informal
-                      coaching approaches.
-                    </p>
-                    <p className="text-xs text-green-600 font-medium">
-                      Source: CSO Insights 2016 Sales Enablement Study (900+ organizations)
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Sales Cycle Reduction Card */}
-              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(1) ? "flipped" : ""}`}>
-                <div className="flip-card-inner">
-                  <div
-                    className="flip-card-front flex justify-between items-center p-4 bg-blue-50 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(1)}
-                  >
-                    <span className="text-gray-700 font-medium">Deal Closure Improvement</span>
-                    <span className="text-3xl font-bold text-blue-500 font-lato">+20%</span>
-                  </div>
-                  <div
-                    className="flip-card-back p-3 md:p-4 bg-blue-100 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(1)}
-                  >
-                    <h4 className="font-semibold text-blue-800 mb-2 text-sm md:text-base">
-                      Aberdeen Group 2019 Sales Research
-                    </h4>
-                    <p className="text-xs md:text-sm text-blue-700 mb-2 leading-relaxed">
-                      Structured coaching focusing on specific selling skills improved deal closure rates by 20% through
-                      better qualification and objection handling techniques.
-                    </p>
-                    <p className="text-xs text-blue-600 font-medium">Source: Aberdeen Group 2019 Sales Research</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Rep Retention Increase Card */}
-              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(2) ? "flipped" : ""}`}>
-                <div className="flip-card-inner">
-                  <div
-                    className="flip-card-front flex justify-between items-center p-4 bg-purple-50 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(2)}
-                  >
-                    <span className="text-gray-700 font-medium">Annual Revenue Growth</span>
-                    <span className="text-3xl font-bold text-purple-500 font-lato">+16.7%</span>
-                  </div>
-                  <div
-                    className="flip-card-back p-3 md:p-4 bg-purple-100 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(2)}
-                  >
-                    <h4 className="font-semibold text-purple-800 mb-1 text-xs md:text-sm">
-                      Sales Management Association
-                    </h4>
-                    <p className="text-xs text-purple-700 mb-1 leading-tight">
-                      Companies with optimal coaching programs experienced 16.7% greater annual revenue growth vs.
-                      informal coaching.
-                    </p>
-                    <p className="text-xs text-purple-600 font-medium">Source: Sales Management Association 2020</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Ramp Time Reduction Card */}
-              <div className={`flip-card h-52 md:h-44 ${flippedCards.has(3) ? "flipped" : ""}`}>
-                <div className="flip-card-inner">
-                  <div
-                    className="flip-card-front flex justify-between items-center p-4 bg-orange-50 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(3)}
-                  >
-                    <span className="text-gray-700 font-medium">New Hire Productivity</span>
-                    <span className="text-3xl font-bold text-orange-500 font-lato">+28%</span>
-                  </div>
-                  <div
-                    className="flip-card-back p-3 md:p-4 bg-orange-100 rounded-lg cursor-pointer"
-                    onClick={() => handleCardFlip(3)}
-                  >
-                    <h4 className="font-semibold text-orange-800 mb-2 text-sm md:text-base">Brandon Hall Group</h4>
-                    <p className="text-xs md:text-sm text-orange-700 mb-2 leading-relaxed">
-                      Structured onboarding with skills assessment and targeted coaching improved new hire productivity
-                      by 28% compared to traditional approaches.
-                    </p>
-                    <p className="text-xs text-orange-600 font-medium">
-                      Source: Brandon Hall Group 2021 Onboarding Study
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-lato">
-              Standardized Assessment Meets Personalized Coaching
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our mobile-optimized platform provides the tools you need to evaluate and develop your sales team
-              effectively.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center md:text-left">
-                <div className="flex justify-center md:justify-start">
-                  <BarChart3 className="h-12 w-12 text-blue-600 mb-4" />
-                </div>
-                <CardTitle className="font-lato">Align assessments</CardTitle>
-                <CardDescription>
-                  Evaluate selling skills using the same criteria and clearly defined behavioral indicators across your
-                  entire team.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center md:text-left">
-                <div className="flex justify-center md:justify-start">
-                  <ClipboardList className="h-12 w-12 text-yellow-500 mb-4" />
-                </div>
-                <CardTitle className="font-lato">Coach with focus</CardTitle>
-                <CardDescription>Coach specific skills based on assessment results.</CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center md:text-left">
-                <div className="flex justify-center md:justify-start">
-                  <TrendingUp className="h-12 w-12 text-red-500 mb-4" />
-                </div>
-                <CardTitle className="font-lato">Track development</CardTitle>
-                <CardDescription>
-                  Monitor skill development over time to ensure what you do is having an impact.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Customization Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-1 gap-12 items-center justify-center">
-            <div>
-              <Badge className="mb-4 bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
-                Tailored to Your Organization
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-lato">
-                Your Sales Process, <span className="text-blue-600">Your Assessment Model</span>
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                We understand that every sales organization has its unique approach. That's why SalesCoach is fully
-                customizable to your specific sales methodology.
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-stretch min-h-[500px]">
+            <div className="flex flex-col justify-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-600 mb-6 leading-tight">
+                There are many ways to learn.
+                <br />
+                <span className="text-blue-600 font-extrabold">Some achieve better results than others.</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                At my boutique L&D consultancy AKTICON, we don't deliver{" "}
+                <span className="text-blue-600 font-bold">programs</span>. We craft unique learning experiences that
+                transform your sales teams and drive business <span className="text-red-600 font-bold">results</span>.
               </p>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <Settings className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Tailored Behavior Indicators</h3>
-                    <p className="text-gray-600">
-                      Define the selling skills and behaviors being assessed to match your organization's specific sales
-                      process and methodology.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Sliders className="h-6 w-6 text-yellow-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Flexible Assessment Framework</h3>
-                    <p className="text-gray-600">
-                      Adapt assessment levels, implement internal benchmarks and integrate your unique coaching approach
-                      and metrics.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <AppIcon className="h-6 w-6 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">An App that is Truly Yours</h3>
-                    <p className="text-gray-600">
-                      Customize a version of SalesCoach with us - specifically for your organization, with your branding
-                      and tailored for your sales teams.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <Link href="/contact">
-                  <Button variant="outline" size="lg" className="text-blue-600 border-blue-600 hover:bg-blue-50">
-                    Discuss Customization Options
-                  </Button>
+              <div className="flex justify-center">
+                <Link
+                  href="/contact"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md flex items-center"
+                >
+                  Explore Services <span className="ml-2">→</span>
                 </Link>
               </div>
             </div>
+            <div className="relative">
+              <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+                <Image
+                  src="/images/group-session.jpeg"
+                  alt="Transformative Impact"
+                  fill
+                  className="object-cover object-center"
+                  style={{ objectPosition: "30% center" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Standard Frameworks Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-100">Ready-to-Use Frameworks</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-lato">
-              Built on <span className="text-green-600">Industry Best Practices</span>
+      {/* Services Section */}
+      <section id="services" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-600 mb-6">
+              <span className="text-red-600 font-extrabold">Crafting Unique Experiences</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Don't have a customized sales process yet? No problem. Our standard version is based on tried and tested
-              industry frameworks that have proven successful across thousands of sales organizations.
+            <p className="text-xl text-gray-600">
+              Don't expect a '2-day standard training program' from me. I'm not repeating the same training program with
+              different clients over and over again. Some call that 'subject matter expertise' - I call it laziness...
+              <br /> It would be easier and definitely more profitable for me. But also way less fun - and most
+              certainly way less transformative and impactful for you and your teams.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            {/* Transactional Sales Card */}
-            <Card className="hover:shadow-xl transition-shadow border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-4 p-3 bg-blue-500 rounded-full w-fit">
-                  <Zap className="h-8 w-8 text-white" />
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Service 1 - UPDATED */}
+            <div className="group">
+              <div className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:shadow-xl rounded-lg">
+                <div className="relative h-64 w-full overflow-hidden">
+                  <Image
+                    src="/images/child-globe.jpeg"
+                    alt="Child with Globe"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent flex items-end">
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        Learning Program
+                        <br />
+                        Design & Delivery
+                      </h3>
+                    </div>
+                  </div>
                 </div>
-                <CardTitle className="text-2xl font-lato text-blue-900">Transactional Sales</CardTitle>
-                <CardDescription className="text-blue-700 text-lg">
-                  Perfect for shorter sales cycles and product-focused selling
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-semibold text-blue-800 mb-3 font-lato">Key Focus Areas:</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <Target className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Efficient prospecting and lead qualification</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Target className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Product knowledge and feature-benefit selling</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Target className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Objection handling and closing techniques</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Target className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Volume-based activity management</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <p className="text-sm text-blue-800 font-medium">
-                    <strong>Best for:</strong> Retail, inside sales, SaaS, e-commerce, and high-volume B2B sales
+                <div className="p-6">
+                  <p className="text-gray-600 mb-4 text-justify">
+                    You need to change specific behaviors of individual team members? Get knowledge or new skills
+                    embedded in the hearts and minds of some of your teams? Or you want to support a larger
+                    transformation effort with proactive upskilling? <br /> It's not always easy to find the right
+                    approach to help your people move in the direction you need them to. Change is hard. Necessary, but
+                    hard.
+                  </p>
+
+                  {/* Light divider */}
+                  <div className="border-t border-gray-200 mb-4"></div>
+
+                  <p className="text-gray-600 mb-6 text-justify">
+                    <span className="text-gray-600">Let me help you getting (them) there:</span>
+                  </p>
+
+                  <div className="space-y-4">
+                    <div
+                      className="bg-blue-100 hover:bg-[#0077b6] p-4 rounded-lg cursor-pointer transition-all duration-300 group/box"
+                      onClick={() => setActiveItem(activeItem === 1 ? null : 1)}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-medium text-gray-600 group-hover/box:!text-white transition-colors">
+                          Tapping Into Curiosity
+                        </h4>
+                        <span
+                          className={`transition-all duration-300 text-gray-600 group-hover/box:!text-white ${activeItem === 1 ? "rotate-45" : ""}`}
+                        >
+                          ↗
+                        </span>
+                      </div>
+                      {activeItem === 1 && (
+                        <p className="mt-2 text-sm text-gray-600 group-hover/box:!text-white transition-colors">
+                          Let's create learning journeys that tap into that curious inner child of your participants.
+                          Let's connect the topic at hand with your learners' real day to day life. Us humans, we love
+                          to learn. We are built to explore and to grow. Yet as adults, we don't always like being told.
+                          Let's make learning personal and enjoyable and rewarding. Let's see our participants for who
+                          they are, for what they can be - and then help them become that!
+                        </p>
+                      )}
+                    </div>
+
+                    <div
+                      className="bg-blue-100 hover:bg-[#0077b6] p-4 rounded-lg cursor-pointer transition-all duration-300 group/box"
+                      onClick={() => setActiveItem(activeItem === 2 ? null : 2)}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-medium text-gray-600 group-hover/box:!text-white transition-colors">
+                          Tackling resistance before it emerges
+                        </h4>
+                        <span
+                          className={`transition-all duration-300 text-gray-600 group-hover/box:!text-white ${activeItem === 2 ? "rotate-45" : ""}`}
+                        >
+                          ↗
+                        </span>
+                      </div>
+                      {activeItem === 2 && (
+                        <p className="mt-2 text-sm text-gray-600 group-hover/box:!text-white transition-colors">
+                          To attain – or maintain – a competitive edge in an ever-changing world, change is inevitable.
+                          Your people have to change, you have to change, even your boss (and your bosses' boss) have to
+                          change. Often. But change is hard on people. Our brains are wired to stay in homeostasis. To
+                          keep the status quo alive, because in that status que, we are alive. To overcome that very
+                          human inertia, we must identify how a change may impact different stakeholders in the
+                          organization and engage them in the process early to reduce the risk they associate with
+                          change.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 text-justify">
+                    <br />
+                    We create a clear roadmap to achieve the change you're after that includes all relevant stakeholders
+                    and multiple activities spread over time to preempt implementation barriers. Then, I deliver against
+                    the plan we made as promised - or better.
                   </p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Relationship Sales Card */}
-            <Card className="hover:shadow-xl transition-shadow border-2 border-green-200 bg-gradient-to-br from-green-50 to-green-100">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-4 p-3 bg-green-500 rounded-full w-fit">
-                  <Heart className="h-8 w-8 text-white" />
+            {/* Service 2 */}
+            <div className="group">
+              <div className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:shadow-xl rounded-lg">
+                <div className="relative h-64 w-full overflow-hidden">
+                  <Image
+                    src="/images/paths.jpeg"
+                    alt="Program Evaluation"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent flex items-end">
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        Learning Program
+                        <br />
+                        Evaluation & Optimization
+                      </h3>
+                    </div>
+                  </div>
                 </div>
-                <CardTitle className="text-2xl font-lato text-green-900">Relationship Sales</CardTitle>
-                <CardDescription className="text-green-700 text-lg">
-                  Ideal for complex, consultative selling with longer cycles
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-semibold text-green-800 mb-3 font-lato">Key Focus Areas:</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <Users className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Consultative discovery and needs analysis</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Users className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Stakeholder mapping and relationship building</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Users className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Solution development and value articulation</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Users className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Long-term account management and expansion</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-green-100 p-3 rounded-lg">
-                  <p className="text-sm text-green-800 font-medium">
-                    <strong>Best for:</strong> Enterprise software, professional services, manufacturing, financial
-                    services, and complex B2B solutions
+                <div className="p-6">
+                  <p className="text-gray-600 mb-4 text-justify">
+                    Finding the best route to successful learning and behaviour change can be confusing. Your internal
+                    trainers are doing their thing, but the changes you're after aren't coming to pass? Is it, because
+                    you didn't include some stakeholders? Tried to do too much, too quickly? Content not engaging
+                    enough? We can evaluate existing program designs, didactics and facilitation.
+                  </p>
+
+                  {/* Light divider */}
+                  <div className="border-t border-gray-200 mb-4"></div>
+
+                  <p className="text-gray-600 mb-6 text-justify">
+                    <span className="text-gray-600">Then, we create a plan to boost engagement:</span>
+                  </p>
+
+                  <div className="space-y-4">
+                    <div
+                      className="bg-red-100 hover:bg-[#d62828] p-4 rounded-lg cursor-pointer transition-all duration-300 group/box"
+                      onClick={() => setActiveItem(activeItem === 4 ? null : 4)}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-medium text-gray-600 group-hover/box:!text-white transition-colors">
+                          Planning with the end in mind
+                        </h4>
+                        <span
+                          className={`transition-all duration-300 text-gray-600 group-hover/box:!text-white ${activeItem === 4 ? "rotate-45" : ""}`}
+                        >
+                          ↗
+                        </span>
+                      </div>
+                      {activeItem === 4 && (
+                        <p className="mt-2 text-sm text-gray-600 group-hover/box:!text-white transition-colors">
+                          Programs with the power to change the people and the organization need to be designed from a
+                          meta-perspective: with an interwoven top-down / bottom-up approach, involving all relevant
+                          stakeholder groups, analyzing and adjusting related systems and procedures to reinforce the
+                          intended change. Because learning 'the thing' is one thing - but shaping the organization to
+                          then apply 'that thing' is another.
+                        </p>
+                      )}
+                    </div>
+
+                    <div
+                      className="bg-red-100 hover:bg-[#d62828] p-4 rounded-lg cursor-pointer transition-all duration-300 group/box"
+                      onClick={() => setActiveItem(activeItem === 5 ? null : 5)}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-medium text-gray-600 group-hover/box:!text-white transition-colors">
+                          Delivering enriching growth experiences
+                        </h4>
+                        <span
+                          className={`transition-all duration-300 text-gray-600 group-hover/box:!text-white ${activeItem === 5 ? "rotate-45" : ""}`}
+                        >
+                          ↗
+                        </span>
+                      </div>
+                      {activeItem === 5 && (
+                        <div className="mt-2">
+                          <p className="text-sm text-gray-600 group-hover/box:!text-white transition-colors">
+                            Each training hour is an investment the company takes into its people. Yet often, it doesn't
+                            quite feel like that to the participants of a training program. Are your trainers
+                            communicating the value they provide? Great facilitation skills can turn boring topics into
+                            exciting opportunities for growth. Let's make sure your trainers are up to the task.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 text-justify">
+                    <br />
+                    We tweak the design of your programs to maxize its chances of success, we coach your trainers to be
+                    the best you've ever had, in short: we improve your internal program design, didactical and
+                    facilitation capabilities.
                   </p>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Benefits of Standard Frameworks */}
-          <div className="bg-white p-8 rounded-2xl shadow-xl">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center font-lato">
-              Why Start with Proven Frameworks?
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
-                  <CheckCircle className="h-6 w-6 text-blue-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2 font-lato">Immediate Implementation</h4>
-                <p className="text-gray-600 text-sm">
-                  Start assessing and coaching your team right away with frameworks that work
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-yellow-100 rounded-full w-fit">
-                  <TrendingUp className="h-6 w-6 text-yellow-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2 font-lato">Proven Results</h4>
-                <p className="text-gray-600 text-sm">
-                  Our sales models are best practices, derived from the success for thousands of sales teams
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-red-100 rounded-full w-fit">
-                  <Settings className="h-6 w-6 text-red-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2 font-lato">Foundation for Growth</h4>
-                <p className="text-gray-600 text-sm">
-                  Use them as a starting point and evolve them into your own customized approach over time
-                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section id="benefits" className="py-20 px-4 bg-blue-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-lato">
-                Transform Your Sales Organization
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Improve Employee Satisfaction</h3>
-                    <p className="text-gray-600">
-                      Structured coaching and clear development paths increase engagement and retention.
-                    </p>
+      {/* Rest of the sections remain unchanged */}
+      {/* Churchill Quote Section */}
+      <section className="py-12 bg-blue-600 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <blockquote className="text-xl md:text-2xl font-light italic mb-3">
+              "I am always ready to learn although I do not always like being taught."
+            </blockquote>
+            <cite className="text-lg">— Winston Churchill</cite>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section id="process" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-600 mb-6">
+              How We'll <span className="text-red-600">Work Together</span>
+            </h2>
+            <p className="text-xl text-gray-600">
+              I'm actively thinking with you, ahead of you, to ensure you're hitting your target.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="space-y-16">
+              {/* Step 1 */}
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <div className="md:w-1/6">
+                  <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto md:mx-0">
+                    1
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Accelerate Revenue Growth</h3>
-                    <p className="text-gray-600">Better-trained reps close more deals and achieve quota faster.</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Reduce Turnover Costs</h3>
-                    <p className="text-gray-600">
-                      Invest in your people and see dramatic improvements in retention rates.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900 font-lato">Scale Coaching Excellence</h3>
-                    <p className="text-gray-600">
-                      Ensure consistent, high-quality coaching across all managers and teams.
-                    </p>
-                  </div>
+                <div className="md:w-5/6">
+                  <h3 className="text-2xl font-bold text-gray-600 mb-4">Define Your Objectives</h3>
+                  <p className="text-gray-600">
+                    We start by clearly defining what success looks like for you. Whether you need to change specific
+                    behaviors, embed new knowledge, or support a large-scale transformation—I'll work with you to
+                    establish clear, measurable objectives.
+                  </p>
                 </div>
               </div>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-xl">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center font-lato">Why It Matters</h3>
-              <div className="space-y-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-500 font-lato mb-2">73%</div>
-                  <p className="text-gray-600">of sales managers spend less than 5% of their time coaching</p>
-                  <p className="text-xs text-gray-400 mt-1">Source: Sales Management Association 2020</p>
+
+              {/* Step 2 */}
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <div className="md:w-1/6">
+                  <div className="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto md:mx-0">
+                    2
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-500 font-lato mb-2">88%</div>
-                  <p className="text-gray-600">of high-performing sales teams use structured coaching</p>
-                  <p className="text-xs text-gray-400 mt-1">Source: CSO Insights 2018 Sales Performance Study</p>
+                <div className="md:w-5/6">
+                  <h3 className="text-2xl font-bold text-gray-600 mb-4">Craft Your Experience</h3>
+                  <p className="text-gray-600">
+                    No cookie-cutter programs here. I'll design a completely custom experience that addresses your
+                    specific challenges, fits your organizational culture, and engages your team in ways standard
+                    training never could.
+                  </p>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-purple-500 font-lato mb-2">7x</div>
-                  <p className="text-gray-600">ROI on coaching investments in sales organizations</p>
-                  <p className="text-xs text-gray-400 mt-1">Source: ICF Global Coaching Study 2020</p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <div className="md:w-1/6">
+                  <div className="bg-gray-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto md:mx-0">
+                    3
+                  </div>
+                </div>
+                <div className="md:w-5/6">
+                  <h3 className="text-2xl font-bold text-gray-600 mb-4">Deliver With Excellence</h3>
+                  <p className="text-gray-600">
+                    I'll deliver what you need, when you need it, in the highest quality and with the least amount of
+                    headache for you. My goal is to make the entire process smooth and stress-free while exceeding your
+                    expectations.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <div className="md:w-1/6">
+                  <div className="bg-white border-2 border-gray-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto md:mx-0 p-3">
+                    <Image
+                      src="/images/logo1.png"
+                      alt="AKTICON"
+                      width={40}
+                      height={40}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="md:w-5/6">
+                  <h3 className="text-2xl font-bold text-gray-600 mb-4">Ensure Lasting Impact</h3>
+                  <p className="text-gray-600">
+                    Our work doesn't end when the training does. I'll help you implement systems that embed new
+                    behaviors into your organization's DNA, ensuring the change you want to bring about lives on long
+                    after our engagement ends.
+                  </p>
                 </div>
               </div>
             </div>
@@ -555,77 +424,168 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-lato">Ready to Transform Your Sales Team?</h2>
-          <p className="text-xl mb-8 opacity-90">Start for free. No installation required. No strings attached.</p>
-          <div className="flex justify-center">
-            <Button
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 border border-blue-600"
-              onClick={handleAppLaunch}
+      {/* Einstein Quote Section */}
+      <section className="py-12 bg-blue-600 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <blockquote className="text-xl md:text-2xl font-light italic mb-3">
+              "Things should be made as simple as possible, but not any simpler."
+            </blockquote>
+            <cite className="text-lg">— Albert Einstein</cite>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-600 mb-6">
+              AKTICON Learning Journeys:
+              <br />
+              <span className="text-blue-600">Created from Expertise</span> <br />{" "}
+              <span className="text-red-600">Made for Change</span>
+            </h2>
+            <p className="text-xl text-gray-600">
+              Applying 20 years of specialized expertise in andragogy, didactics, sales and coaching to your challenges,
+              we will jointly create learning experiences that transform your sales teams.
+              <br />
+              For more <span className="text-red-600">fun</span>, more <span className="text-blue-600">impact</span>,
+              and <span className="text-blue-400">bluer</span> skies in your learning world.
+            </p>
+          </div>
+
+          {/* Centered image */}
+          <div className="flex justify-center mb-12">
+            <div className="relative h-[350px] w-full max-w-2xl overflow-hidden rounded-lg shadow-lg">
+              <Image src="/images/blue-sky.png" alt="Reaching for transformation" fill className="object-cover" />
+            </div>
+          </div>
+
+          {/* Second text block */}
+          <div className="prose prose-lg max-w-none text-center">
+            <p>
+              As independent consultant, I work directly with you to craft high-impact learning journeys that lead to
+              lasting change and transform your people and your business. If expertise in other areas is required -
+              whether it's artwork, animation, video, audio, web, or leveraging emerging AI tools - I draw from a
+              network of specialists I know and trust. And if I don't have a specialist at hand, I'll find just the
+              right person for the job. No stress for you, I'll take care of it.
+            </p>
+          </div>
+
+          {/* Purpose Statement - Visually Separated */}
+          <div className="mt-16 mb-8">
+            <div className="bg-gradient-to-r from-blue-600 to-red-600 py-12">
+              <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto text-center">
+                  <h3 className="text-2xl font-bold text-white mb-4 uppercase tracking-wide">My Purpose</h3>
+                  <p className="text-xl font-medium text-white mb-2">
+                    Supporting you with whatever it takes to create a remarkable sales organization.
+                  </p>
+                  <p className="text-xl font-medium text-white">For better workplaces and happier people.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-600 mb-6">
+              What <span className="text-blue-600">Clients</span> Say
+            </h2>
+            <p className="text-xl text-gray-600">Real feedback from real transformations</p>
+          </div>
+
+          <TestimonialCarousel />
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-blue-600">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white !important">
+              Ready to Transform Your Training?
+            </h2>
+            <p className="text-xl mb-8 text-white !important">
+              Let's discuss how we can create a unique learning experience that delivers lasting results for your team.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-md font-semibold transition-colors"
             >
-              <div className="mr-2">
-                <AppIcon className="h-5 w-5" />
-              </div>
-              Launch SalesCoach App
-            </Button>
+              Get in Touch <span className="ml-2">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SalesCoach Section */}
+      <section id="salescoach" className="py-20 bg-red-600 my-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white !important">
+              Need to optimize Sales through consistent Sales Coaching?
+            </h2>
+            <p className="text-xl mb-8 text-white !important">
+              Sometimes, it takes a piece of technology to embed behaviour. Our SalesCoach App is closing the gap
+              between 'learning how to coach a sales team' and 'consistently coaching them in a professional manner to
+              improve their selling skills'.
+            </p>
+            <a
+              href="https://salescoach.akticon.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-md font-semibold transition-colors"
+            >
+              Learn more about our SalesCoach App <span className="ml-2">→</span>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-100 text-gray-600 py-12 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <img src="/logo.png" alt="SalesCoach Logo" className="h-6 w-6 transform scale-x-110" />
-                <span className="text-lg font-bold text-gray-900 font-lato tracking-tight">SalesCoach</span>
-              </div>
-              <p className="text-gray-500">
-                Empowering sales teams through standardized assessment and personalized coaching.
-              </p>
+      <footer className="py-12 bg-gray-600 text-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <Image
+                src="/images/AKTICON-logo-horizontal.png"
+                alt="AKTICON"
+                width={180}
+                height={50}
+                className="h-10 w-auto brightness-0 invert"
+              />
             </div>
-            <div>
-              <h3 className="font-semibold mb-4 text-gray-900 font-lato">Legal</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/impressum" className="hover:text-gray-900">
-                    Impressum
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy" className="hover:text-gray-900">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms" className="hover:text-gray-900">
-                    Terms & Conditions
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4 text-gray-900 font-lato">Support</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/contact" className="hover:text-gray-900">
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-gray-900">
-                    Help
-                  </Link>
-                </li>
-              </ul>
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+              <Link href="#about" className="text-gray-300 hover:text-white transition-colors">
+                About
+              </Link>
+              <Link href="#services" className="text-gray-300 hover:text-white transition-colors">
+                Services
+              </Link>
+              <Link href="#process" className="text-gray-300 hover:text-white transition-colors">
+                Process
+              </Link>
+              <a
+                href="https://salescoach.akticon.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                SalesCoach
+              </a>
+              <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+                Contact
+              </Link>
             </div>
           </div>
-          <div className="border-t border-gray-300 mt-8 pt-8 text-center text-gray-500">
-            <p>&copy; 2025 SalesCoach by AKTICON. All rights reserved.</p>
+          <div className="mt-8 pt-8 border-t border-gray-500 text-center text-gray-300">
+            <p>&copy; {new Date().getFullYear()} AKTICON. All rights reserved.</p>
           </div>
         </div>
       </footer>

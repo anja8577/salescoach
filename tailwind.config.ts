@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss"
 
-const config: Config = {
+const config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -26,12 +26,18 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#0077b6", // AKTICON blue
           foreground: "hsl(var(--primary-foreground))",
+          light: "#e6f3fa", // Light blue for backgrounds
+          medium: "#b3d9f0", // Medium blue for borders
+          dark: "#006399", // Darker blue for hover states
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "#d62828", // AKTICON red
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        tertiary: {
+          DEFAULT: "#6c757d", // AKTICON gray
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -52,20 +58,6 @@ const config: Config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        // Custom blue color matching the logo
-        blue: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#11339b", // Main logo blue
-          700: "#0f2d87",
-          800: "#0d2573",
-          900: "#0b1d5f",
-          950: "#081447",
         },
       },
       borderRadius: {
@@ -89,7 +81,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config
 
 export default config
